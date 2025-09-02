@@ -10,20 +10,21 @@
     <button onclick="sendData()">Submit</button>
 
     <script>
-      fetch("https://script.google.com/macros/s/AKfycbzrua6YBc0RwBenem-S4pcnTrIP3vXE0V9qp_28-m_Ttn_GZnGMx12sYeVPUF9vBwTE/exec", {
-  method: "POST",
-  mode: "no-cors",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    name: document.getElementById("name").value,
-    score: document.getElementById("score").value
-  })
-})
-.then(() => alert("Data sent (no response due to no-cors)"))
-.catch(err => alert("Error: " + err));
-
+      function sendData() {
+        fetch("https://script.google.com/macros/s/AKfycbzrua6YBc0RwBenem-S4pcnTrIP3vXE0V9qp_28-m_Ttn_GZnGMx12sYeVPUF9vBwTE/exec", {
+          method: "POST",
+          mode: "no-cors", // avoids CORS errors, but response cannot be read
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name: document.getElementById("name").value,
+            score: document.getElementById("score").value
+          })
+        })
+        .then(() => alert("Data sent (no response due to no-cors)"))
+        .catch(err => alert("Error: " + err));
+      }
     </script>
   </body>
 </html>
